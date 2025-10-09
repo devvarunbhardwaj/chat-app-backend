@@ -10,6 +10,7 @@ const envSchema = z.object({
   CORS_ORIGIN: z.string().default('*'),
   RATE_LIMIT_WINDOW_MS: z.string().default('900000'),
   RATE_LIMIT_MAX_REQUESTS: z.string().default('100'),
+  ADMIN_EMAILS: z.string(),
 });
 
 const parseEnv = () => {
@@ -49,4 +50,5 @@ export const config = {
     windowMs: parseInt(env.RATE_LIMIT_WINDOW_MS, 10),
     max: parseInt(env.RATE_LIMIT_MAX_REQUESTS, 10),
   },
+  admins: env.ADMIN_EMAILS.split(',')
 };
