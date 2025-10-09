@@ -178,3 +178,4 @@ dist
 node_modules/
 
 /generated/prisma
+docker/
