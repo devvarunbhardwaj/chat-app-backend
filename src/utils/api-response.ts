@@ -9,7 +9,7 @@ export class ApiResponse<T = any> {
     this.success = statusCode < 400;
     this.statusCode = statusCode;
     this.message = message;
-    this.data = data;
+    if (data) this.data = data;
     this.meta = meta;
   }
 

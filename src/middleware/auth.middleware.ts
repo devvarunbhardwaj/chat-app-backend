@@ -12,7 +12,7 @@ interface JwtPayload {
 }
 
 export const authenticate = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, _res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader?.startsWith('Bearer ')) throw ApiError.unauthorized('No token provided');
@@ -45,7 +45,7 @@ export const authenticate = catchAsync(
 );
 
 export const authorize = (...roles: string[]) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, _res: Response, next: NextFunction) => {
     if (!req.user) throw ApiError.unauthorized('Authentication required');
 
     if (!roles.includes(req.user.role)) throw ApiError.forbidden('Insufficient permissions');

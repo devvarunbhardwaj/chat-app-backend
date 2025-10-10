@@ -4,7 +4,7 @@ import { logger } from '../config/logger';
 import { Prisma } from '../../generated/prisma';
 import { config } from '@/config/env';
 
-export const errorConverter = (err: any, req: Request, res: Response, next: NextFunction) => {
+export const errorConverter = (err: any, _req: Request, _res: Response, next: NextFunction) => {
   let error = err;
 
   if (!(error instanceof ApiError)) {
@@ -19,7 +19,7 @@ export const errorConverter = (err: any, req: Request, res: Response, next: Next
   next(error);
 };
 
-export const errorHandler = (err: ApiError, req: Request, res: Response, next: NextFunction) => {
+export const errorHandler = (err: ApiError, _req: Request, res: Response, _next: NextFunction) => {
   let { statusCode, message } = err;
 
   if (config.isProduction && !err.isOperational) {
