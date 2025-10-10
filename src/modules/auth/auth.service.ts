@@ -9,10 +9,11 @@ import { Role } from '../../../generated/prisma';
 export class AuthService {
   async register(email: string, password: string, name: string, phoneNumber: string) {
     const existingUser = await prisma.user.findUnique({ where: { email } });
-
     if (existingUser) throw ApiError.conflict('Email already registered');
 
     const hashedPassword = await bcrypt.hash(password, config.bcrypt.rounds);
+    console.log(hashedPassword);
+    console.log(config);
 
     const user = await prisma.user.create({
       data: {

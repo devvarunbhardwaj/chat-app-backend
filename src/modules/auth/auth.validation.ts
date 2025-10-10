@@ -6,6 +6,7 @@ export const authValidation = {
       email: z.string().email('Invalid email address'),
       phoneNumber: z.string().min(10).max(10),
       name: z.string().min(2, 'Name must be at least 2 characters').optional(),
+      password: z.string().min(8, "the password must be at least of size 8"),
     }),
   }),
 
