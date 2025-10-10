@@ -1,7 +1,7 @@
-import app from '@/app';
-import { config } from '@/config/env';
-import { connectDatabase, disconnectDatabase } from '@/config/database';
-import { logger } from '@/config/logger';
+import app from './app';
+import { config } from './config/env';
+import { connectDatabase, disconnectDatabase } from './config/database';
+import { logger } from './config/logger';
 
 let server: any;
 

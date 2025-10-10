@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.string().default('3000'),
@@ -14,7 +15,7 @@ const envSchema = z.object({
 });
 
 const parseEnv = () => {
-  const parsed = envSchema.safeParse(process.env);
+  const parsed = envSchema.safeParse(Bun.env);
 
   if (!parsed.success) {
     console.error('❌ Invalid environment variables:', parsed.error.flatten().fieldErrors);
@@ -24,7 +25,7 @@ const parseEnv = () => {
   return parsed.data;
 };
 
-export const env = parseEnv();
+export const env: z.infer<typeof envSchema> = parseEnv();
 
 
 export const config = {
