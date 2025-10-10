@@ -5,8 +5,8 @@ export const authValidation = {
     body: z.object({
       email: z.string().email('Invalid email address'),
       phoneNumber: z.string().min(10).max(10),
-      name: z.string().min(2, 'Name must be at least 2 characters').optional(),
-      password: z.string().min(8, "the password must be at least of size 8"),
+      name: z.string().min(2, 'Name must be at least 2 characters'),
+      password: z.string().min(8, "The password must be at least * characters"),
     }),
   }),
 
