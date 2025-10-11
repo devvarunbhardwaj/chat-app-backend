@@ -29,7 +29,7 @@ export class AuthService {
       },
     });
 
-    const token = this.generateToken(user.id, user.email, user.role);
+    const token = this.generateToken(user.id, user.email, user.role, user.name);
     return { user, token };
   }
 
@@ -40,11 +40,9 @@ export class AuthService {
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    if (!isPasswordValid) {
-      throw ApiError.unauthorized('Invalid credentials');
-    }
+    if (!isPasswordValid) throw ApiError.unauthorized('Invalid credentials, enter correct password');
 
-    const token = this.generateToken(user.id, user.email, user.role);
+    const token = this.generateToken(user.id, user.email, user.role, user.name);
 
     return {
       user: {
@@ -56,11 +54,11 @@ export class AuthService {
       token,
     };
   }
-  private generateToken(id: string, email: string, role: string) {
+  private generateToken(id: string, email: string, role: string, name: string) {
     const options: SignOptions = {
       expiresIn: "15d",
     };
-    return jwt.sign({ id, email, role }, config.jwt.secret as string, options);
+    return jwt.sign({ id, email, role, name }, config.jwt.secret as string, options);
   }
 
 }
