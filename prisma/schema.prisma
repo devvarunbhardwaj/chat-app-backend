@@ -22,6 +22,14 @@ model User {
   @@map("users")
 }
 
+model Banner {
+  id        String   @id @default(uuid())
+  title     String?
+  image     String   @unique
+  link      String
+  createdAt DateTime @default(now())
+}
+
 enum Role {
   USER
   ADMIN

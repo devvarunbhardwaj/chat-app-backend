@@ -9,6 +9,7 @@ import { rateLimiter } from '@/middleware/rate-limiter.middleware';
 import { errorConverter, errorHandler } from './middleware/error.middleware';
 import { ApiError } from '@/utils/api-error';
 import authRoutes from '@/modules/auth/auth.routes';
+import bannerRouter from "./modules/banner/banner.routes";
 
 const app: Application = express();
 
@@ -41,6 +42,7 @@ app.get('/health', (_req: Request, res: Response) => {
 
 // API routes
 app.use('/api/v1/auth', authRoutes);
+app.use("/api/v1/banner", bannerRouter);
 
 // 404 handler
 app.use((_req: Request, _res: Response) => {
