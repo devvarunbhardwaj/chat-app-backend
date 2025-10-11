@@ -8,7 +8,7 @@ import { authenticate, authorize } from '@/middleware/auth.middleware';
 const router = Router();
 
 router.post(
-  "/create",
+  "/",
   rateLimiter,
   authenticate,
   authorize("ADMIN"),
@@ -17,7 +17,7 @@ router.post(
 );
 
 router.put(
-  "/update/:id",
+  "/:id",
   rateLimiter,
   authenticate,
   authorize("ADMIN"),
@@ -32,7 +32,7 @@ router.get(
 );
 
 router.delete(
-  "/delete/:id",
+  "/:id",
   rateLimiter,
   authenticate,
   authorize("ADMIN"),
