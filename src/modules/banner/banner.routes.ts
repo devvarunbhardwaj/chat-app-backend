@@ -36,6 +36,7 @@ router.delete(
   rateLimiter,
   authenticate,
   authorize("ADMIN"),
+  validate(bannerValidation.delete),
   bannerController.delete
 );
 

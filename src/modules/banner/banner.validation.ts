@@ -14,5 +14,9 @@ export const bannerValidation = {
       image: z.string().optional(),
       link: z.string().optional(),
     }),
+    params: z.object({ id: z.string() })
   }),
+  delete: z.object({
+    params: z.object({ id: z.string() })
+  })
 };
