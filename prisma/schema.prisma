@@ -28,6 +28,39 @@ model Banner {
   image     String   @unique
   link      String
   createdAt DateTime @default(now())
+
+  @@map("banners")
+}
+
+model Course {
+  id       String          @id @default(cuid())
+  name     String
+  image    String?
+  contents CourseContent[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("courses")
+}
+
+model CourseContent {
+  id          String      @id @default(cuid())
+  type        ContentType
+  description String?
+  url         String?
+  course      Course      @relation(fields: [courseId], references: [id])
+  courseId    String
+
+  createdAt DateTime @default(now())
+
+  @@map("course_contents")
+}
+
+enum ContentType {
+  VIDEO
+  IMAGE
+  TEXT
 }
 
 enum Role {
