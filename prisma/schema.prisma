@@ -46,7 +46,7 @@ model CourseContent {
   id          String      @id @default(cuid())
   type        ContentType
   description String?
-  url         String?
+  assetLink   String?
   courseId    String
   course      Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
   createdAt   DateTime    @default(now())
@@ -54,10 +54,32 @@ model CourseContent {
   @@map("course_contents")
 }
 
+model Channel {
+  id        String           @id @default(cuid())
+  name      String
+  image     String
+  messages  ChannelMessage[]
+  createdAt DateTime         @default(now())
+
+  @@map("channels")
+}
+
+model ChannelMessage {
+  id          String      @id @default(cuid())
+  message     String?
+  assetLink   String?
+  contentType ContentType
+  channelId   String
+  channel     Channel     @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  createdAt   DateTime    @default(now())
+
+  @@map("channel_messages")
+}
+
 enum ContentType {
-  VIDEO
-  IMAGE
   TEXT
+  IMAGE
+  VIDEO
 }
 
 enum Role {
