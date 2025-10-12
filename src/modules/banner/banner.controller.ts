@@ -16,7 +16,7 @@ export class BannerController {
 
   update = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
-    if (!id) throw new ApiError(404, "Id not found");
+    if (!id) throw new ApiError(404, "Banner Id not found");
 
     const { title, image, link } = req.body;
 
