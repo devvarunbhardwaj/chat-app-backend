@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",
+    "@socket.io/bun-engine": "^0.0.3",
     "bcrypt": "^5.1.1",
     "compression": "^1.8.1",
     "cors": "^2.8.5",
@@ -31,6 +32,7 @@
     "express-rate-limit": "^7.5.1",
     "helmet": "^7.2.0",
     "morgan": "^1.10.1",
+    "socket.io": "^4.8.1",
     "zod": "^3.25.76"
   },
   "devDependencies": {
