@@ -16,7 +16,7 @@ const startServer = async () => {
     const httpServer = createServer(app);
 
     //Attach Socket.IO to the HTTP server
-    io = await initializeSocketServer(httpServer);
+    io = initializeSocketServer(httpServer);
     logger.info('Socket.IO initialized');
 
     //Start the server
